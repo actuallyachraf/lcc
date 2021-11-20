@@ -1,8 +1,9 @@
 (* A token in a C progrm *)
 type token =
-  | Ident
+  | Ident of string
   | Return
-  | Int
+  | Int of int
+  | Char of char
   | Plus
   | Minus
   | Star
@@ -14,6 +15,8 @@ type token =
   | RBrace
   | LBrace
 
-let token_of_string tok = match tok with
-  | Ident -> "Ident"
-  | _ -> "Not Implemented Yet"
+let token_of_string tok =
+  match tok with
+  | Ident id -> Printf.sprintf "IDENTIFIER<%s>" id
+  | _ -> "Illegal"
+;;
