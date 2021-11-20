@@ -1,2 +1,2 @@
 (test
- (name lcc))
+ (name lcc_test))

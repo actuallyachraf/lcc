@@ -1,4 +1,4 @@
 (executable
  (public_name lcc)
  (name main)
- (libraries lcc))
+ (libraries lcc_lib))
