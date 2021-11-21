@@ -25,6 +25,8 @@ let rec next_token input =
   | '}' :: tail -> Token.RBrace :: next_token tail
   | '(' :: tail -> Token.LParen :: next_token tail
   | ')' :: tail -> Token.RParen :: next_token tail
+  | ';' :: tail -> Token.Semicolon :: next_token tail
+  | ',' :: tail -> Token.Comma :: next_token tail
   | _ -> []
 ;;
 

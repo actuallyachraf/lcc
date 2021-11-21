@@ -1,3 +1,3 @@
 (tests
  (names lcc_test token_test lex_test)
- (libraries lcc_lib ounit2))
+ (libraries lcc_lib ounit2 base))
