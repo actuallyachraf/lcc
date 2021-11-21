@@ -2,6 +2,8 @@
 type token =
   | Ident of string (* Identifiers*)
   | Return (* Return keyword*)
+  | KInt (* int keyword *)
+  | KChar (* char keyword *)
   | Int of int (* C int type*)
   | Char of char (* C char type*)
   | Assign

@@ -1,2 +1,3 @@
 (library
- (name lcc_lib))
+ (name lcc_lib)
+ (libraries base))

@@ -9,10 +9,20 @@ let make_lex_is_alpha_test name expected input =
   name >:: fun _ -> assert_equal expected (Lex.is_alpha input) ~printer:string_of_bool
 ;;
 
+let make_lex_test name expected input =
+  name >:: fun _ -> assert_equal expected (Lex.lex input)
+;;
+
+let make_next_token_test name expected input =
+  name >:: fun _ -> assert_equal expected (Lex.next_token input)
+;;
+
 let tests =
   "test suite for token"
   >::: [ make_lex_is_digit_test "digits" true '5'
        ; make_lex_is_alpha_test "alpha" true 'b'
        ; make_lex_is_digit_test "not digits" false 'c'
+       ; make_lex_test "lex" [ 'i'; 'n'; 't' ] "int"
+       ; make_next_token_test "next_token" [ Token.LBrace; Token.RBrace ] ("()" |> Lex.lex)
        ]
 ;;
