@@ -1,3 +1,4 @@
 open Lcc_lib
 
-let () = print_endline (Token.token_of_string (Token.Ident "my_func"))
+let program = Pprint.pretty_print (Lex.lex "return 42;")
+let () = Printf.printf "%s\n" program

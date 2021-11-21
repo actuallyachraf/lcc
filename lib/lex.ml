@@ -44,7 +44,14 @@ let lex_identifier input =
     let char_token = Str.matched_group 1 input in
     let rest = Str.matched_group 3 input in
     Token.Char (String.get char_token 0), rest)
-  else Token.Static, input
+  else if Str.string_match id_regexp input 0
+  then (
+    (* it's an ID, possibly a keyword *)
+    let ident = Str.matched_group 1 input in
+    let rest = Str.matched_group 2 input in
+    let id_token = get_identifier ident in
+    id_token, rest)
+  else failwith ("Syntax error: \"" ^ input ^ "\" is not valid.")
 ;;
 
 let rec lex_ident tokens =
@@ -66,5 +73,5 @@ and next_token input =
 
 let lex input =
   let input = String.strip input in
-  String.to_list input
+  next_token (String.to_list input)
 ;;

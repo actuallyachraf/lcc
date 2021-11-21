@@ -24,10 +24,14 @@ let tests =
   >::: [ make_lex_is_digit_test "digits" true '5'
        ; make_lex_is_alpha_test "alpha" true 'b'
        ; make_lex_is_digit_test "not digits" false 'c'
-       ; make_lex_test "lex" [ 'i'; 'n'; 't' ] "int"
-       ; make_next_token_test "next_token" [ Token.LBrace; Token.RBrace ] ("{}" |> Lex.lex)
-       ; make_next_token_test "next_token_a" [ Token.Int 123 ] ("123" |> Lex.lex)
-       ; make_next_token_test "next_token_b" [ Token.Char 'A' ] ("'A'" |> Lex.lex)
+       ; make_lex_test "next_token" [ Token.LBrace; Token.RBrace ] "{}"
+       ; make_lex_test "next_token_a" [ Token.Int 123 ] "123"
+       ; make_lex_test "next_token_b" [ Token.Char 'A' ] "'A'"
+       ; make_lex_test "next_token_c" [ Token.Return; Token.Semicolon ] "return ;"
+       ; make_lex_test
+           "next_token_d"
+           [ Token.Return; Token.Int 42; Token.Semicolon ]
+           "return 42;"
        ]
 ;;
 
