@@ -15,7 +15,8 @@ let make_lex_test name expected input =
 
 let make_next_token_test name expected input =
   name
-  >:: fun _ -> assert_equal expected (Lex.next_token input) ~printer:Helper.string_of_list
+  >:: fun _ ->
+  assert_equal expected (Lex.next_token input) ~printer:Helper.string_of_token_list
 ;;
 
 let tests =
@@ -25,6 +26,8 @@ let tests =
        ; make_lex_is_digit_test "not digits" false 'c'
        ; make_lex_test "lex" [ 'i'; 'n'; 't' ] "int"
        ; make_next_token_test "next_token" [ Token.LBrace; Token.RBrace ] ("{}" |> Lex.lex)
+       ; make_next_token_test "next_token_a" [ Token.Int 123 ] ("123" |> Lex.lex)
+       ; make_next_token_test "next_token_b" [ Token.Char 'A' ] ("'A'" |> Lex.lex)
        ]
 ;;
 

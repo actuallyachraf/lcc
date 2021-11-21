@@ -23,6 +23,8 @@ let token_of_string tok =
   match tok with
   | Ident id -> Printf.sprintf "IDENTIFIER<%s>" id
   | Return -> "RETURN"
+  | KInt -> "INT"
+  | KChar -> "CHAR"
   | Int t -> Printf.sprintf "INTEGER<%d>" t
   | Char t -> Printf.sprintf "CHAR<%c>" t
   | Assign -> "="
