@@ -46,7 +46,7 @@ let lex_identifier input =
     Token.Char (String.get char_token 0), rest)
   else if Str.string_match id_regexp input 0
   then (
-    (* it's an ID, possibly a keyword *)
+    (* it's an Identifier or possibly a keyword *)
     let ident = Str.matched_group 1 input in
     let rest = Str.matched_group 2 input in
     let id_token = get_identifier ident in
