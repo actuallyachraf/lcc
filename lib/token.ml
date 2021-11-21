@@ -1,9 +1,10 @@
 (* A token in a C progrm *)
 type token =
-  | Ident of string
-  | Return
-  | Int of int
-  | Char of char
+  | Ident of string (* Identifiers*)
+  | Return (* Return keyword*)
+  | Int of int (* C int type*)
+  | Char of char (* C char type*)
+  | Assign
   | Plus
   | Minus
   | Star
@@ -12,11 +13,26 @@ type token =
   | Comma
   | LParen
   | RParen
-  | RBrace
   | LBrace
+  | RBrace
+  | Static
 
 let token_of_string tok =
   match tok with
   | Ident id -> Printf.sprintf "IDENTIFIER<%s>" id
-  | _ -> "Illegal"
+  | Return -> "RETURN"
+  | Int t -> Printf.sprintf "INTEGER<%d>" t
+  | Char t -> Printf.sprintf "CHAR<%c>" t
+  | Assign -> "="
+  | Plus -> "+"
+  | Minus -> "-"
+  | Star -> "*"
+  | Slash -> "/"
+  | Semicolon -> ";"
+  | Comma -> ","
+  | LParen -> "("
+  | RParen -> ")"
+  | LBrace -> "{"
+  | RBrace -> "}"
+  | _ -> "ILLEGAL"
 ;;
