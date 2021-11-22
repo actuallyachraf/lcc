@@ -20,7 +20,7 @@ let make_next_token_test name expected input =
 ;;
 
 let tests =
-  "test suite for token"
+  "test suite for lexer"
   >::: [ make_lex_is_digit_test "digits" true '5'
        ; make_lex_is_alpha_test "alpha" true 'b'
        ; make_lex_is_digit_test "not digits" false 'c'

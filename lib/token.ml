@@ -6,18 +6,23 @@ type token =
   | KChar (* char keyword *)
   | Int of int (* C int type*)
   | Char of char (* C char type*)
-  | Assign
-  | Plus
-  | Minus
-  | Star
-  | Slash
-  | Semicolon
-  | Comma
-  | LParen
-  | RParen
-  | LBrace
-  | RBrace
+  | Assign (* = *)
+  | Equal (* == *)
+  | Neq (* != *)
+  | Bang (* ! *)
+  | Plus (* + *)
+  | Minus (* - *)
+  | Star (* * *)
+  | Slash (* / *)
+  | Semicolon (* ; *)
+  | Colon (* : *)
+  | Comma (* , *)
+  | LParen (* ( *)
+  | RParen (* ) *)
+  | LBrace (* { *)
+  | RBrace (* } *)
   | Static
+(* static keyword *)
 
 let token_of_string tok =
   match tok with
@@ -33,6 +38,7 @@ let token_of_string tok =
   | Star -> "*"
   | Slash -> "/"
   | Semicolon -> ";"
+  | Colon -> ":"
   | Comma -> ","
   | LParen -> "("
   | RParen -> ")"
