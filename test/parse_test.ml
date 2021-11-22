@@ -11,8 +11,14 @@ let make_ret_statement =
   [ ret ], []
 ;;
 
+let make_fun = "int main(){ return 42; }" |> Lex.lex |> Parse.parse
+
 let make_parse_statement_test name expected input =
   name >:: fun _ -> assert_equal expected (Parse.parse_statement_list input)
+;;
+
+let make_parse_test name expected input =
+  name >:: fun _ -> assert_equal expected (Parse.parse input)
 ;;
 
 let tests =
@@ -22,6 +28,7 @@ let tests =
            "parse_statement"
            make_ret_statement
            (Lex.lex "return 5")
+       ; make_parse_test "parse_function" make_fun (Lex.lex "int main(){ return 42; }")
        ]
 ;;
 

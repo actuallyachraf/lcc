@@ -1,4 +1,5 @@
 open Lcc_lib
 
-let program = Pprint.pretty_print (Lex.lex "int main() { return 42; }")
-let () = Printf.printf "%s\n" program
+let program = Lex.lex "int main() { return 42; }\n"
+let tokens = Printf.printf "%s" (Pprint.pretty_print program)
+let () = Gen.codegen (Parse.parse program)
