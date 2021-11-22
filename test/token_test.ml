@@ -24,7 +24,7 @@ let tests =
        ; make_token_test "rparen" ")" Token.RParen
        ; make_token_test "lbrace" "{" Token.LBrace
        ; make_token_test "rbrace" "}" Token.RBrace
-       ; make_token_test "illegal" "ILLEGAL" Token.Static
+       ; make_token_test "static" "STATIC" Token.Static
        ]
 ;;
 

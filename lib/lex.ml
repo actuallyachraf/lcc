@@ -27,7 +27,16 @@ let get_identifier t =
   match t with
   | "return" -> Token.Return
   | "int" -> Token.KInt
+  | "static" -> Token.Static
+  | "extern" -> Token.Extern
   | "char" -> Token.KChar
+  | "if" -> Token.If
+  | "else" -> Token.Else
+  | "for" -> Token.For
+  | "do" -> Token.Do
+  | "while" -> Token.While
+  | "break" -> Token.Break
+  | "continue" -> Token.Continue
   | _ -> Token.Ident t
 ;;
 
@@ -67,6 +76,28 @@ and next_token input =
   | ')' :: tail -> Token.RParen :: next_token tail
   | ';' :: tail -> Token.Semicolon :: next_token tail
   | ',' :: tail -> Token.Comma :: next_token tail
+  | '+' :: tail -> Token.Plus :: next_token tail
+  | ':' :: tail -> Token.Colon :: next_token tail
+  | '-' :: '-' :: _ -> failwith "decrement not yet implemented"
+  | '<' :: '<' :: tail -> Token.Shl :: next_token tail
+  | '>' :: '>' :: tail -> Token.Shr :: next_token tail
+  | '!' :: '=' :: tail -> Token.Neq :: next_token tail
+  | '<' :: '=' :: tail -> Token.Lte :: next_token tail
+  | '>' :: '=' :: tail -> Token.Gte :: next_token tail
+  | '<' :: tail -> Token.Lt :: next_token tail
+  | '>' :: tail -> Token.Gt :: next_token tail
+  | '-' :: tail -> Token.Minus :: next_token tail
+  | '*' :: tail -> Token.Star :: next_token tail
+  | '/' :: tail -> Token.Slash :: next_token tail
+  | '&' :: '&' :: tail -> Token.And :: next_token tail
+  | '&' :: tail -> Token.BitAnd :: next_token tail
+  | '|' :: '|' :: tail -> Token.Or :: next_token tail
+  | '|' :: tail -> Token.BitOr :: next_token tail
+  | '^' :: tail -> Token.Xor :: next_token tail
+  | '~' :: tail -> Token.Complement :: next_token tail
+  | '!' :: tail -> Token.Bang :: next_token tail
+  | '=' :: '=' :: tail -> Token.Equal :: next_token tail
+  | '=' :: tail -> Token.Assign :: next_token tail
   | c :: tail -> if Char.is_whitespace c then next_token tail else lex_ident input
   | _ -> []
 ;;

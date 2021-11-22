@@ -68,16 +68,6 @@ type fun_param = Param of type_def * ident
 type fun_body = Body of statement list
 
 (* Function Declaration *)
-(*type fun_declaration =
-  | FunDecl of
-      { fun_type : type_def
-      ; fun_name : ident
-      ; storage_class : storage_class
-      ; params : fun_param list
-      ; body : fun_body
-      }
-*)
-(* Code *)
 type fun_decl = FunDecl of type_def * ident * fun_param list * fun_body
 
 (* Program *)

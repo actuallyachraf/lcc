@@ -10,7 +10,8 @@ let make_lex_is_alpha_test name expected input =
 ;;
 
 let make_lex_test name expected input =
-  name >:: fun _ -> assert_equal expected (Lex.lex input)
+  name
+  >:: fun _ -> assert_equal expected (Lex.lex input) ~printer:Helper.string_of_token_list
 ;;
 
 let make_next_token_test name expected input =
@@ -32,6 +33,25 @@ let tests =
            "next_token_d"
            [ Token.Return; Token.Int 42; Token.Semicolon ]
            "return 42;"
+       ; make_lex_test
+           "test lex keywords"
+           [ Token.For
+           ; Token.LParen
+           ; Token.KInt
+           ; Token.Ident "i"
+           ; Token.Assign
+           ; Token.Int 0
+           ; Token.Semicolon
+           ; Token.Ident "i"
+           ; Token.Lt
+           ; Token.Int 10
+           ; Token.Semicolon
+           ; Token.Ident "i"
+           ; Token.Plus
+           ; Token.Plus
+           ; Token.RParen
+           ]
+           "for(int i = 0; i < 10;i++)"
        ]
 ;;
 
