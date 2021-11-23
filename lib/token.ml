@@ -30,6 +30,7 @@ type token =
   | Shr (* ShiftRight >> *)
   | Bang (* ! *)
   | Complement (* ~ *)
+  | Question (* ? for ternary operations*)
   | Plus (* + *)
   | Minus (* - *)
   | Star (* * *)
@@ -78,6 +79,7 @@ let token_of_string tok =
   | Shl -> "<<"
   | Shr -> ">>"
   | Bang -> "!"
+  | Question -> "?"
   | Complement -> "~"
   | Plus -> "+"
   | Minus -> "-"
@@ -91,3 +93,5 @@ let token_of_string tok =
   | LBrace -> "{"
   | RBrace -> "}"
 ;;
+
+let compare t1 t2 = String.compare (token_of_string t1) (token_of_string t2)
